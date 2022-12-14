@@ -1,0 +1,110 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" controllerName="zfiorictrfdrep.controller.Detail" displayBlock="true">
+    <Page id="detail" title="{i18n>titleDetail}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <ObjectHeader id="detailHeader" icon="sap-icon://business-card" intro="{Fornecedor} - {FornName}" title="{ContratoFactoring}" number="{Fornecedor}">
+                <ObjectAttribute id="attribute" text="Fornecedor Factoring: {FornecedorDivergente} - {FornDivName}" />
+                <statuses>
+                    <ObjectStatus id="status" text="{ 
+                        path: 'DataInicio', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }} - 
+                        { path: 'DataFim', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}" />
+                </statuses>
+            </ObjectHeader>
+            <IconTabBar id="tab" class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter id="attachment" icon="sap-icon://attachment" key="attachments" >
+                        <List id="list" items="{ContratoToAnexos}" updateFinished=".onFinished" visible="false">
+                            <StandardListItem 
+                                title="{fileName}" 
+                                icon="{ path: 'Filetype', formatter: '.formatter.icon' }" 
+                                description="Criado por: {CreatByName} em: { path: 'Creaton', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'} }" />
+                        </List>
+                        <UploadCollection 
+                            id="uploadCollection"
+                            instantUpload="false"
+                            items="{ path: 'ContratoToAnexos', templateShareable: false }"
+                            uploadEnabled="false"
+                            mode="MultiSelect"
+                            multiple="true"
+                            uploadButtonInvisible="true"
+                            selectionChange=".onSelectionChange"
+                            uploadTerminated="onUploadTerminated"
+                            >
+                            <toolbar>
+                                <OverflowToolbar style="Clear">
+                                    <ToolbarSpacer/>
+                                    <Button id="btnDown" enabled="false" text="Download" press="onDownloadDocuments" type="Transparent"/>
+                                    <UploadCollectionToolbarPlaceholder/>
+                                </OverflowToolbar>
+                            </toolbar>
+                            <items>
+                                <UploadCollectionItem 
+                                    documentId="{ContratoFactoring}"
+						            fileName="{fileName}"
+						            mimeType="{Filetype}"
+                                    enableEdit="false"
+						            enableDelete="false"
+						            visibleDelete="false"
+						            visibleEdit="false"
+                                    url="{ parts: ['ContratoFactoring','fileName'], formatter: '.formatter.formatUrl' }">
+                                    <attributes>
+                                        <ObjectAttribute title="Criado por: {CreatByName} 
+                                                                        em: { path: 'Creaton', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}} 
+                                                                      hora: { path: 'Creatime', formatter: '.formatter.formatTime' }"></ObjectAttribute>
+                                    </attributes>    
+                                </UploadCollectionItem>
+                            </items>                            
+                        </UploadCollection>
+                    </IconTabFilter>
+                    <IconTabFilter id="documents" icon="sap-icon://documents" key="documentos" >
+                        <Table 
+                            id="DetailTable" 
+                            headerText="Documentos Lançados" 
+                            items="{ContratoToDocumentos}" 
+                            noDataText="No Data" 
+                            mode="None" 
+                            growing="true" 
+                            growingScrollToLoad="true"
+                            updateFinished=".onUpdateFinished">
+                            <columns>
+                                <Column>
+                                    <Text text="{i18n>ano}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>num}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>itm}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>ped}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>ddc}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>ddl}" />
+                                </Column>
+                                <Column>
+                                    <Text text="{i18n>val}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle" type="Inactive">
+                                    <cells>
+                                        <ObjectIdentifier id="itemAno" title="{Gjahr}" />
+                                        <ObjectIdentifier id="itemNumero" title="{Belnr}" />
+                                        <ObjectIdentifier id="item_" title="{Ebelp}" />
+                                        <ObjectIdentifier id="itemPedido" title="{Ebeln}" />
+                                        <ObjectIdentifier id="itemDocDat" title="{ path: 'Bldat', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'} }" />
+                                        <ObjectIdentifier id="itemLancamento" title="{ path: 'Budat', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}" />
+                                        <ObjectNumber     id="itemValor"  number="{Netwr}" unit="{Waers}" state="{path: 'Netwr', formatter: '.formatter.state'}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items> 
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>
