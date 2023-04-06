@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/model/odata/type/Time"], function (Time) {
+sap.ui.define(["sap/ui/model/odata/type/Time"], function(Time) {
     "use strict";
 
     return {
@@ -9,30 +9,30 @@ sap.ui.define(["sap/ui/model/odata/type/Time"], function (Time) {
          * @param {string} sValue the number string to be rounded
          * @returns {string} sValue with 2 digits rounded
          */
-        numberUnit : function (sValue) {
+        numberUnit: function(sValue) {
             if (!sValue) {
                 return "";
             }
             return parseFloat(sValue).toFixed(2);
         },
 
-        state: function (sValue) {
+        state: function(sValue) {
 
             var state;
 
-            if(sValue >= 0){
-                state = 'Success'; 
+            if (sValue >= 0) {
+                state = 'Success';
             } else {
-                state = 'Error'; 
+                state = 'Error';
             }
 
-            return state; 
-            
+            return state;
+
         },
 
-        icon: function (sValue) {
+        icon: function(sValue) {
 
-            var type = sValue.substr( 12, sValue.lenght ); //'application/pdf'
+            var type = sValue.substr(12, sValue.lenght); //'application/pdf'
 
             switch (type) {
                 case 'pdf':
@@ -52,34 +52,34 @@ sap.ui.define(["sap/ui/model/odata/type/Time"], function (Time) {
                     break;
             }
 
-            return type; 
-            
+            return type;
+
         },
 
-        count: function (oValue) {
+        count: function(oValue) {
 
-            if(oValue){
+            if (oValue) {
                 return oValue.lenght;
             }
-            
+
         },
 
-        formatUrl: function (sCtr,sFName) {
+        formatUrl: function(sCtr, sFName) {
             //Example: Anexos(ContratoFactoring='File3',Filename='teste2.pdf')/$value
-			let sUrl = this.getView().getModel().sServiceUrl;
-			sUrl += "/" + "Anexos(ContratoFactoring='" + sCtr + "',Filename='" + sFName + "')" + "/$value";
-			return sUrl;
-		},
+            let sUrl = this.getView().getModel().sServiceUrl;
+            sUrl += "/" + "Anexos(ContratoFactoring='" + sCtr + "',Filename='" + sFName + "')" + "/$value";
+            return sUrl;
+        },
 
-        formatTime: function (oTime) {
+        formatTime: function(oTime) {
 
             var sTime = new Time(oTime).formatValue({
-                             __edmType : "Edm.Time",
-                                    ms : 86398000
-                        }, "string");
+                __edmType: "Edm.Time",
+                ms: oTime.ms
+            }, "string");
 
-            return sTime; 
-            
+            return sTime;
+
         }
 
     };
