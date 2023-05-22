@@ -23,7 +23,7 @@
                     <OverflowToolbar style="Clear">
                         <Title id="title"/>
                         <ToolbarSpacer />
-                        <SearchField width="10rem" search="onSearch" placeholder="{i18n>sContrato}"/>
+                        <SearchField width="10rem" search="onSearch" placeholder="{i18n>Desc}"/>
                         <Button
 							tooltip="Sort"
 							icon="sap-icon://sort"
@@ -39,6 +39,11 @@
 					<Column>
                         <header>
                             <Text text="{i18n>Contrato}" />
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Text text="{i18n>Desc}" />
                         </header>
                     </Column>
 					<Column>
@@ -61,7 +66,8 @@
                     <ColumnListItem id="item" vAlign="Middle" type="Navigation" press="onItemPress">
                         <cells>
                             <ObjectIdentifier id="item_for" title="{FornName}" text="{Fornecedor}" />
-							<ObjectIdentifier id="item_contrato" title="{ContratoFactoring}" />
+							<ObjectIdentifier id="item_contrato" title="{ContratoFactoring}" visible="true"/>
+                            <ObjectIdentifier id="item_desc" title="{Descricao}"/>
 							<ObjectIdentifier id="item_datai" title="{ path: 'DataInicio', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}" />
 							<ObjectIdentifier id="item_dataf" title="{ path: 'DataFim', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}" />
 							<ObjectIdentifier id="item_for_div" title="{FornDivName}" text="{FornecedorDivergente}" />

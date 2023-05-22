@@ -4,7 +4,7 @@ sap.ui.define([
     "../model/formatter",
     "sap/m/MessageToast"
 ], function (Controller, History, formatter, MessageToast) {
-    'use strict';
+    'use strict'; 
 
     return Controller.extend("zfiorictrfdrep.controller.Detail", {
 

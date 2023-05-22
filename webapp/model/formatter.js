@@ -78,7 +78,7 @@ sap.ui.define(["sap/ui/model/odata/type/Time"], function(Time) {
                 ms: oTime.ms
             }, "string");
 
-            return sTime;
+            return sTime; 
 
         }
 

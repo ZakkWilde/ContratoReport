@@ -1,14 +1,15 @@
 <core:FragmentDefinition
-	xmlns="sap.m"
+	xmlns="sap.m" 
 	xmlns:core="sap.ui.core">
 	<ViewSettingsDialog
 		confirm="handleSortDialogConfirm">
 		<sortItems>
-			<ViewSettingsItem text="Fornecedor" key="Fornecedor" selected="true" />
-			<ViewSettingsItem text="Contrato" key="ContratoFactoring" />
-			<ViewSettingsItem text="Inicio" key="DataInicio" />
-			<ViewSettingsItem text="Fim" key="DataFim" />
-            <ViewSettingsItem text="Fornecedor Factoring" key="FornecedorDivergente" /> 
+			<ViewSettingsItem text="{i18n>Fornecedor}" key="Fornecedor" selected="true" />
+			<ViewSettingsItem text="{i18n>Contrato}" key="ContratoFactoring" />
+			<ViewSettingsItem text="{i18n>Desc}" key="ContratoDesc" />
+			<ViewSettingsItem text="{i18n>inicio}" key="DataInicio" />
+			<ViewSettingsItem text="{i18n>fim}" key="DataFim" />
+            <ViewSettingsItem text="{i18n>fornFac}" key="FornecedorDivergente" /> 
 		</sortItems>
 	</ViewSettingsDialog>
-</core:FragmentDefinition>
+</core:FragmentDefinition> 

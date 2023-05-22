@@ -1,8 +1,8 @@
 <mvc:View xmlns:table="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" controllerName="zfiorictrfdrep.controller.Detail" displayBlock="true">
     <Page id="detail" title="{i18n>titleDetail}" showNavButton="true" navButtonPress="onNavBack">
         <content>
-            <ObjectHeader id="detailHeader" icon="sap-icon://business-card" intro="{Fornecedor} - {FornName}" title="{ContratoFactoring}" number="{Fornecedor}">
-                <ObjectAttribute id="attribute" text="Fornecedor Factoring: {FornecedorDivergente} - {FornDivName}" />
+            <ObjectHeader id="detailHeader" icon="sap-icon://business-card" intro="{Fornecedor} - {FornName}" title="{ContratoFactoring}: {Descricao}" number="{Fornecedor}">
+                <ObjectAttribute id="attribute" text="{i18n>supplierF} {FornecedorDivergente} - {FornDivName}" />
                 <statuses>
                     <ObjectStatus id="status" text="{ 
                         path: 'DataInicio', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }} - 
@@ -43,9 +43,9 @@
 						            mimeType="{Filetype}"
                                     enableEdit="false"
 						            enableDelete="false"
-						            visibleDelete="false"
+						            visibleDelete="false" 
 						            visibleEdit="false"
-                                    url="{ parts: ['ContratoFactoring','fileName'], formatter: '.formatter.formatUrl' }">
+                                    url="{ parts: ['ContratoFactoring','Filename'], formatter: '.formatter.formatUrl' }">
                                     <attributes>
                                         <ObjectAttribute title="{i18n>cpr} {CreatByName} 
                                                                 {i18n>e} { path: 'Creaton', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}} 
@@ -58,7 +58,7 @@
                     <IconTabFilter id="documents" icon="sap-icon://documents" key="documentos" >
                         <Table 
                             id="DetailTable" 
-                            headerText="Documentos Lançados" 
+                            headerText="{i18n>documentsL}" 
                             items="{ContratoToDocumentos}" 
                             noDataText="No Data" 
                             mode="None" 
@@ -97,7 +97,10 @@
                                         <ObjectIdentifier id="itemPedido" title="{Ebeln}" />
                                         <ObjectIdentifier id="itemDocDat" title="{ path: 'Bldat', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'} }" />
                                         <ObjectIdentifier id="itemLancamento" title="{ path: 'Budat', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd-MM-yyyy'}}" />
-                                        <ObjectNumber     id="itemValor"  number="{Netwr}" unit="{Waers}" state="{path: 'Netwr', formatter: '.formatter.state'}"/>
+                                        <ObjectNumber     id="itemValor"  number="{	parts:[{path:'Netwr'},{path:'Waers'}], 
+                                                                                    type: 'sap.ui.model.type.Currency',
+						                                                            formatOptions: {showMeasure: false}
+					                                                              }" unit="{Waers}" state="{path: 'Netwr', formatter: '.formatter.state'}"/>
                                     </cells>
                                 </ColumnListItem>
                             </items> 
